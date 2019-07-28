@@ -10,8 +10,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @transactions = Transaction.where(From: current_user.username).
-                    or(Transaction.where(To: current_user.username))
+    if (current_user)
+      @transactions = Transaction.where(From: current_user.username).
+                      or(Transaction.where(To: current_user.username))
+    else
+      @transactions = nil
+    end
   end
 
   # GET /users/new
