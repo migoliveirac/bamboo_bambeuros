@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transactions
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
 end
 
 Rails.application.routes.draw do
+  resources :transactions
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
 end
 
 Rails.application.routes.draw do
+  resources :transactions
   root 'home#index'
   
   resources :users

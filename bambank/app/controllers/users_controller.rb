@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @transactions = Transaction.where(From: current_user.username).
+                    or(Transaction.where(To: current_user.username))
   end
 
   # GET /users/new
@@ -70,5 +72,13 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :password, :password_confirmation, :balance)
+    end
+
+    def current_user
+      if session[:user_id]
+        @current_user ||= User.find(session[:user_id])
+      else
+        @current_user = nil
+      end
     end
 end
